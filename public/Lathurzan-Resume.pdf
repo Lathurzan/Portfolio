@@ -1,0 +1,162 @@
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+
+3 0 obj
+<<
+/Type /Page
+/Parent 2 0 R
+/MediaBox [0 0 612 792]
+/Contents 4 0 R
+/Resources <<
+/Font <<
+/F1 5 0 R
+/F2 6 0 R
+>>
+>>
+>>
+endobj
+
+4 0 obj
+<<
+/Length 2800
+>>
+stream
+BT
+/F1 24 Tf
+50 750 Td
+(LATHURZAN SUBATHARAN) Tj
+0 -30 Td
+/F2 12 Tf
+(Software Engineer) Tj
+0 -20 Td
+(Email: lathurzan@example.com | Phone: +1 (234) 567-890) Tj
+0 -15 Td
+(GitHub: github.com/lathurzan | LinkedIn: linkedin.com/in/lathurzan) Tj
+
+0 -40 Td
+/F1 16 Tf
+(PROFESSIONAL SUMMARY) Tj
+0 -20 Td
+/F2 11 Tf
+(Passionate software engineer with expertise in multiple programming languages) Tj
+0 -15 Td
+(including Java, Python, C++, Node.js, React, and TypeScript. Experienced in) Tj
+0 -15 Td
+(building full-stack applications, educational platforms, and professional) Tj
+0 -15 Td
+(websites. Committed to delivering high-quality, scalable solutions.) Tj
+
+0 -30 Td
+/F1 16 Tf
+(TECHNICAL SKILLS) Tj
+0 -20 Td
+/F2 11 Tf
+(Programming Languages: Java, Python, C++, JavaScript, TypeScript) Tj
+0 -15 Td
+(Web Technologies: React, Node.js, Express.js, HTML5, CSS3) Tj
+0 -15 Td
+(Databases: MongoDB, PostgreSQL, MySQL) Tj
+0 -15 Td
+(Tools & Technologies: Git, Docker, AWS, Tailwind CSS) Tj
+
+0 -30 Td
+/F1 16 Tf
+(FEATURED PROJECTS) Tj
+0 -20 Td
+/F1 12 Tf
+(E-Learning Platform for IELTS Students) Tj
+0 -15 Td
+/F2 11 Tf
+(• Developed a comprehensive campus-based learning management system) Tj
+0 -12 Td
+(• Implemented interactive course modules with multimedia content) Tj
+0 -12 Td
+(• Built real-time progress tracking and analytics features) Tj
+0 -12 Td
+(• Technologies: React, Node.js, MongoDB, Express.js, JavaScript) Tj
+
+0 -20 Td
+/F1 12 Tf
+(HNV Building Construction Website) Tj
+0 -15 Td
+/F2 11 Tf
+(• Created professional website for UK-based construction company) Tj
+0 -12 Td
+(• Implemented responsive design optimized for all devices) Tj
+0 -12 Td
+(• Built interactive project gallery with filtering capabilities) Tj
+0 -12 Td
+(• Technologies: React, TypeScript, Tailwind CSS, Next.js) Tj
+
+0 -30 Td
+/F1 16 Tf
+(EDUCATION) Tj
+0 -20 Td
+/F2 11 Tf
+(Bachelor of Science in Computer Science) Tj
+0 -15 Td
+(University Name | Year) Tj
+
+0 -30 Td
+/F1 16 Tf
+(CERTIFICATIONS & ACHIEVEMENTS) Tj
+0 -20 Td
+/F2 11 Tf
+(• Full-Stack Web Development Certification) Tj
+0 -12 Td
+(• Java Programming Certification) Tj
+0 -12 Td
+(• Active contributor to open-source projects) Tj
+0 -12 Td
+(• Technical content creator on YouTube) Tj
+
+ET
+endstream
+endobj
+
+5 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica-Bold
+>>
+endobj
+
+6 0 obj
+<<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+endobj
+
+xref
+0 7
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000274 00000 n 
+0000003126 00000 n 
+0000003195 00000 n 
+trailer
+<<
+/Size 7
+/Root 1 0 R
+>>
+startxref
+3260
+%%EOF
