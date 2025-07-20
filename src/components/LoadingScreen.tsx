@@ -18,10 +18,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete }) => {
 
   useEffect(() => {
     let currentIndex = 0;
-    let typingTimer: NodeJS.Timeout;
-    let cursorTimer: NodeJS.Timeout;
-    let completeTimer: NodeJS.Timeout;
-    let fadeTimer: NodeJS.Timeout;
+    let typingTimer: ReturnType<typeof setTimeout>;
+    let cursorTimer: ReturnType<typeof setInterval>;
+    let completeTimer: ReturnType<typeof setTimeout>;
+    let fadeTimer: ReturnType<typeof setTimeout>;
 
     // Cursor blinking effect
     const startCursorBlink = () => {

@@ -11,12 +11,6 @@ const Footer: React.FC = () => {
               © 2024 Lathurzan Subatharan. All rights reserved.
             </p>
           </div>
-          
-          <div className="flex items-center space-x-2 text-gray-400">
-            <span>Made with</span>
-            <Heart className="h-4 w-4 text-red-500" />
-            <span>using React & TypeScript</span>
-          </div>
         </div>
       </div>
     </footer>
