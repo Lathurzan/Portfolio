@@ -30,7 +30,8 @@ const Projects: React.FC = () => {
         "Contact forms with email integration",
         "SEO optimized for better search visibility"
       ],
-      githubUrl: "https://github.com/Lathurzan/HNV-Project"
+  githubUrl: "https://github.com/Lathurzan/HNV-Project",
+  liveDemoUrl: "https://hnv-project-frontend.onrender.com"
     }
   ];
 
@@ -92,13 +93,29 @@ const Projects: React.FC = () => {
                 </div>
 
                 <div className="flex space-x-4">
-                  <a
-                    href={project.githubUrl}
+                  <button
+                    onClick={() => {
+                      if (project.title === "HNV Building Construction Website") {
+                        alert("This GitHub repository is private.");
+                      } else {
+                        window.open(project.githubUrl, '_blank');
+                      }
+                    }}
                     className="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                   >
                     <Github className="h-5 w-5 mr-2" />
                     View Code
-                  </a>
+                  </button>
+                  {project.liveDemoUrl && (
+                    <a
+                      href={project.liveDemoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-6 py-3 border border-blue-300 dark:border-teal-400 rounded-md text-blue-700 dark:text-teal-300 bg-blue-50 dark:bg-gray-900 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                 </div>
               </div>
 

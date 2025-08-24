@@ -5,30 +5,30 @@ const Skills: React.FC = () => {
     {
       title: "Programming Languages",
       skills: [
-        { name: "Java", level: 90 },
-        { name: "Python", level: 75 },
+        { name: "Java", level: 80 },
+        { name: "Python", level: 15 },
         { name: "C++", level: 80 },
-        {name : "C#", level: 80  },
-        { name: "TypeScript", level: 88 },
-        { name: "JavaScript", level: 92 }
+        {name : "C#", level: 70  },
+        { name: "TypeScript", level: 68 },
+        { name: "JavaScript", level: 70 }
       ]
     },
     {
       title: "Web Development",
       skills: [
-        { name: "React", level: 90 },
-        { name: "Node.js", level: 85 },
+        { name: "React", level: 70 },
+        { name: "Node.js", level: 75 },
         { name: "HTML/CSS", level: 95 },
-        { name: "Express.js", level: 82 },
+        { name: "Express.js", level: 72 },
       ]
     },
     {
       title: "Tools & Technologies",
       skills: [
-        { name: "Git", level: 88 },
+        { name: "Git", level: 78 },
         { name: "Docker", level: 75 },
-        { name: "MongoDB", level: 80 },
-        { name: "PostgreSQL", level: 82 },
+        { name: "MongoDB", level: 70 },
+        { name: "MySQL", level: 72 },
         { name: "AWS", level: 70 }
       ]
     }
