@@ -8,7 +8,7 @@ const Projects: React.FC = () => {
       title: "E-Learning Platform for IELTS Students",
       description: "A comprehensive campus-based learning management system designed specifically for IELTS preparation. Features include interactive course modules, practice tests, progress tracking, and personalized study plans.",
       technologies: ["React", "Node.js", "MongoDB", "Express.js", "JavaScript"],
-      image: "../../public/ielts-learning-platform.png",
+  image: "/ielts-learning-platform.png",
       icon: <BookOpen className="h-8 w-8 text-blue-600 dark:text-teal-400" />,
       features: [
         "Interactive course modules with multimedia content",
@@ -22,7 +22,7 @@ const Projects: React.FC = () => {
       title: "HNV Building Construction Website",
       description: "A professional website for a UK-based construction company, showcasing their services, portfolio, and expertise. Built with modern web technologies to ensure optimal performance and user experience.",
       technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
-      image: "../../public/HNv.png",
+  image: "/HNv.png",
       icon: <Building className="h-8 w-8 text-blue-600 dark:text-teal-400" />,
       features: [
         "Responsive design optimized for all devices",
