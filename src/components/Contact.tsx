@@ -21,7 +21,7 @@ const Contact: React.FC = () => {
     },
     {
       name: 'YouTube',
-      url: 'https://youtube.com/@lathurzan',
+      url: 'https://youtube.com/@zansubrow?si=k_qUO168hNxYLU7m',
       icon: <Youtube className="h-6 w-6" />
     },
     {
@@ -91,20 +91,27 @@ const Contact: React.FC = () => {
               </div>
             </div>
 
-            <div className="pt-8">
+              <div className="pt-8">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Follow Me
               </h4>
-              <div className="flex space-x-4">
+              <div className="flex flex-wrap items-center space-x-4">
                 {socialLinks.map((link, index) => (
                   <a
                     key={index}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-blue-600 dark:hover:bg-teal-600 text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
+                    aria-label={link.name}
+                    title={link.name}
+                    className="flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-blue-600 dark:hover:bg-teal-600 text-gray-600 dark:text-gray-400 hover:text-white transition-colors"
                   >
-                    {link.icon}
+                    {/* Ensure icons render consistently and are accessible */}
+                    {React.cloneElement(link.icon as React.ReactElement, {
+                      className: 'h-6 w-6',
+                      role: 'img',
+                      'aria-hidden': false
+                    })}
                   </a>
                 ))}
               </div>

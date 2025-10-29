@@ -30,8 +30,7 @@ const Projects: React.FC = () => {
         "Contact forms with email integration",
         "SEO optimized for better search visibility"
       ],
-  githubUrl: "https://github.com/Lathurzan/HNV-Project",
-  liveDemoUrl: "https://hnv-project-frontend.onrender.com"
+  githubUrl: "https://github.com/Lathurzan/HNV-Project"
     }
   ];
 
@@ -106,9 +105,9 @@ const Projects: React.FC = () => {
                     <Github className="h-5 w-5 mr-2" />
                     View Code
                   </button>
-                  {project.liveDemoUrl && (
+                  {('liveDemoUrl' in project && (project as any).liveDemoUrl) && (
                     <a
-                      href={project.liveDemoUrl}
+                      href={(project as any).liveDemoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center px-6 py-3 border border-blue-300 dark:border-teal-400 rounded-md text-blue-700 dark:text-teal-300 bg-blue-50 dark:bg-gray-900 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
