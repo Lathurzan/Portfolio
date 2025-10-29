@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
     },
     {
       name: 'LinkedIn',
-      url: 'https://linkedin.com/in/lathurzan',
+      url: 'https://www.linkedin.com/in/lathurzan-subatharan-b774a8347/',
       icon: <Linkedin className="h-6 w-6" />
     },
     {
