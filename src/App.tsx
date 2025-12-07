@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import LoadingScreen from './components/LoadingScreen';
 import { useTheme } from './hooks/useTheme';
+import Chatbot from './components/chatbot';
 
 function App() {
   const { isDark, toggleTheme } = useTheme();
@@ -41,6 +42,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+  <Chatbot />
     </div>
   );
 }
