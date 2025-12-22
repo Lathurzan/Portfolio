@@ -6,7 +6,7 @@ const Skills: React.FC = () => {
       title: "Programming Languages",
       skills: [
         { name: "Java", level: 80 },
-        { name: "Python", level: 15 },
+        { name: "Python", level: 70 },
         { name: "C++", level: 80 },
         {name : "C#", level: 70  },
         { name: "TypeScript", level: 68 },

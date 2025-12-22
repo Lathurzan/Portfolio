@@ -17,6 +17,7 @@ const generateReply = (text: string) => {
 const Chatbot: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     { id: 1, sender: 'bot', text: "[SYS] Robochat online. Ask about projects(), skills() or resume()." },
   ]);
@@ -33,11 +34,47 @@ const Chatbot: React.FC = () => {
     setMessages((m) => [...m, userMsg]);
     setInput('');
 
-    // simulated robotic response
-    setTimeout(() => {
-      const botMsg: Message = { id: Date.now() + 1, sender: 'bot', text: generateReply(text) };
-      setMessages((m) => [...m, botMsg]);
-    }, 650);
+    // Add a temporary "typing" message while waiting for server
+    const loadingId = Date.now() + 1;
+    const loadingMsg: Message = { id: loadingId, sender: 'bot', text: '...' };
+    setMessages((m) => [...m, loadingMsg]);
+    setIsLoading(true);
+
+    // Send to remote chat endpoint. Assumption: POST /chat accepts JSON { message } and responds with JSON { reply: string } or plain text.
+    (async () => {
+      try {
+        const res = await fetch('http://localhost:8080/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: text }),
+        });
+
+        let reply = '';
+        const ct = res.headers.get('content-type') || '';
+        if (ct.includes('application/json')) {
+          const j = await res.json();
+          // support either { reply } or { message } shape
+          reply = (j && (j.reply || j.message || j.text)) || '';
+        } else {
+          reply = await res.text();
+        }
+
+        if (!reply) {
+          // fall back to local canned reply
+          reply = generateReply(text);
+        }
+
+        const botMsg: Message = { id: Date.now() + 2, sender: 'bot', text: reply };
+        setMessages((m) => [...m.filter((mm) => mm.id !== loadingId), botMsg]);
+      } catch (err) {
+        // on error, remove loading and use local reply
+        const fallback = generateReply(text);
+        const botMsg: Message = { id: Date.now() + 3, sender: 'bot', text: fallback };
+        setMessages((m) => [...m.filter((mm) => mm.id !== loadingId), botMsg]);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -99,15 +136,17 @@ const Chatbot: React.FC = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={onKeyDown}
-                  className="flex-1 px-3 py-2 rounded-md border border-cyan-700 bg-gray-900 text-cyan-100 font-mono focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                  placeholder="e.g. projects() or show resume()"
+                    className="flex-1 px-3 py-2 rounded-md border border-cyan-700 bg-gray-900 text-cyan-100 font-mono focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                    placeholder="e.g. projects() or show resume()"
+                    disabled={isLoading}
                 />
                 <button
-                  onClick={handleSend}
+                    onClick={handleSend}
                   aria-label="Send message"
-                  className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-black text-sm"
+                    className="inline-flex items-center gap-2 px-3 py-2 rounded-md bg-cyan-500 hover:bg-cyan-600 text-black text-sm"
+                    disabled={isLoading}
                 >
-                  Send
+                    {isLoading ? 'Sending…' : 'Send'}
                 </button>
               </div>
             </div>
