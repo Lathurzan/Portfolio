@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight, Download } from 'lucide-react';
-import Logo from '../../public/logo.jpg'
+// Public assets must be referenced by URL. Import with ?url so Vite treats it as external and returns a string URL.
+import Logo from '/logo.jpg?url';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
@@ -13,8 +14,9 @@ const Hero: React.FC = () => {
   const downloadResume = () => {
     // Create a link element and trigger download
     const link = document.createElement('a');
-    link.href = '/Lathurzan-Resume.pdf';
-    link.download = 'Lathurzan-Subatharan-Resume.pdf';
+  // Serve the resume from the public folder (root path)
+  link.href = '/Resume.pdf';
+  link.download = 'Resume.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
     link.click();

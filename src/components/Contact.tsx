@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Youtube, Coffee, ExternalLink } from 'lucide-react';
 
 const Contact: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  
 
   const socialLinks = [
     {
@@ -26,8 +22,10 @@ const Contact: React.FC = () => {
     },
     {
       name: 'Fiverr',
-      url: 'https://www.fiverr.com/lathutech/buying?source=avatar_menu_profile',
-      icon: <ExternalLink className="h-6 w-6" />
+  url: 'https://www.fiverr.com/lathutech/buying?source=avatar_menu_profile',
+  icon: <ExternalLink className="h-6 w-6" />,
+  disabled: true,
+  message: 'This service is not available at this time.'
     },
     {
       name: 'Buy Me a Coffee',
@@ -102,27 +100,48 @@ const Contact: React.FC = () => {
               </h4>
               <div className="flex flex-wrap items-center space-x-4">
                 {socialLinks.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.name}
-                    title={link.name}
-                    className="relative group flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-blue-600 dark:hover:bg-teal-600 text-gray-700 dark:text-gray-300 hover:text-white transition-colors cursor-pointer"
-                  >
-                    {/* Icon */}
-                    {React.cloneElement(link.icon as React.ReactElement, {
-                      className: 'h-6 w-6',
-                      role: 'img',
-                      'aria-hidden': false
-                    })}
+                  link.disabled ? (
+                    <button
+                      key={index}
+                      onClick={() => alert(link.message || 'This service is not available.')}
+                      aria-label={link.name}
+                      title={link.name}
+                      className="relative group flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600 cursor-not-allowed transition-colors"
+                      disabled
+                    >
+                      {React.cloneElement(link.icon as React.ReactElement, {
+                        className: 'h-6 w-6',
+                        role: 'img',
+                        'aria-hidden': false
+                      })}
 
-                    {/* Tooltip label shown on hover */}
-                    <span className="pointer-events-none absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium bg-gray-900 text-white opacity-0 group-hover:opacity-100 transition-opacity dark:bg-white dark:text-black">
-                      {link.name}
-                    </span>
-                  </a>
+                      <span className="pointer-events-none absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium bg-gray-900 text-white opacity-0 group-hover:opacity-100 transition-opacity dark:bg-white dark:text-black">
+                        {link.name}
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      key={index}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.name}
+                      title={link.name}
+                      className="relative group flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-blue-600 dark:hover:bg-teal-600 text-gray-700 dark:text-gray-300 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {/* Icon */}
+                      {React.cloneElement(link.icon as React.ReactElement, {
+                        className: 'h-6 w-6',
+                        role: 'img',
+                        'aria-hidden': false
+                      })}
+
+                      {/* Tooltip label shown on hover */}
+                      <span className="pointer-events-none absolute -top-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap rounded-md px-2 py-1 text-xs font-medium bg-gray-900 text-white opacity-0 group-hover:opacity-100 transition-opacity dark:bg-white dark:text-black">
+                        {link.name}
+                      </span>
+                    </a>
+                  )
                 ))}
               </div>
             </div>

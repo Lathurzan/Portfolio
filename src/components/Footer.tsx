@@ -9,6 +9,9 @@ const Footer: React.FC = () => {
           <div className="mb-4 md:mb-0">
             <p className="text-gray-400">
               © 2024 Lathurzan Subatharan. All rights reserved.
+              <span className="inline-flex items-center ml-3 text-red-400" aria-hidden="true">
+                <Heart className="w-4 h-4" />
+              </span>
             </p>
           </div>
         </div>

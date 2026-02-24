@@ -5,6 +5,21 @@ import { Github, BookOpen, Building } from 'lucide-react';
 const Projects: React.FC = () => {
   const projects = [
     {
+      title: "Community Health & Services Portal (CHaSP)",
+      description:
+        "A full-stack platform centralizing community health services to improve accessibility and engagement. Features secure user management, service discovery, AI-driven support, and online payments.",
+      technologies: ["React", "TypeScript", "Spring Boot", "MySQL", "Python Flask", "OpenAI API", "Stripe", "PayPal"],
+      image: "/chasp.jpeg",
+      icon: <BookOpen className="h-8 w-8 text-blue-600 dark:text-teal-400" />,
+      features: [
+        "JWT-based authentication and role-based access control",
+        "AI-powered chatbot for natural language support",
+        "Secure online donations and payments (Stripe & PayPal)",
+        "Admin analytics dashboard for monitoring usage"
+      ],
+      githubUrl: "https://github.com/Lathurzan/CHaSP"
+    },
+    {
       title: "E-Learning Platform for IELTS Students",
       description: "A comprehensive campus-based learning management system designed specifically for IELTS preparation. Features include interactive course modules, practice tests, progress tracking, and personalized study plans.",
       technologies: ["React", "Node.js", "MongoDB", "Express.js", "JavaScript"],
