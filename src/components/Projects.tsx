@@ -1,9 +1,20 @@
 import React from 'react';
 import { Github, BookOpen, Building } from 'lucide-react';
 
+type Project = {
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  icon: React.ReactNode;
+  features: string[];
+  githubUrl: string;
+  liveDemoUrl?: string;
+};
+
 
 const Projects: React.FC = () => {
-  const projects = [
+  const projects: Project[] = [
     {
       title: "Community Health & Services Portal (CHaSP)",
       description:
@@ -46,6 +57,38 @@ const Projects: React.FC = () => {
         "SEO optimized for better search visibility"
       ],
   githubUrl: "https://github.com/Lathurzan/HNV-Project"
+    }
+    ,
+    {
+      title: "Place Finder AI",
+      description:
+        "An award-winning AI-powered travel discovery platform selected for Cardiff Metropolitan University CST Expo 2026 — top 15 of 200+ submissions. Users can search for destinations using natural language, voice, or images powered by Google Gemini AI, with geospatial proximity search returning results in under 100ms and a personalised TF-IDF recommendation engine.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "FastAPI",
+        "PostgreSQL",
+        "PostGIS",
+        "Google Gemini AI",
+        "scikit-learn",
+        "Stripe",
+        "Tailwind CSS",
+        "Leaflet.js",
+        "JWT",
+        "Python",
+        "Pytest",
+      ],
+      image: "/place-finder-ai.png",
+      icon: <Github className="h-8 w-8 text-blue-600 dark:text-teal-400" />,
+      features: [
+        "Google Gemini AI for natural language search, voice input, and image-based destination recognition",
+        "Geospatial proximity search with PostgreSQL 15 + PostGIS returning results in under 100ms",
+        "TF-IDF cosine similarity recommendation engine for personalised place suggestions",
+        "Stripe subscription payments with JWT authentication and async FastAPI backend",
+        "253 automated tests — 129 pytest unit/integration tests and 124 Postman API tests",
+      ],
+      githubUrl: "https://github.com/Lathurzan/place-finder-ai",
+      liveDemoUrl: "",
     }
   ];
 
@@ -120,9 +163,9 @@ const Projects: React.FC = () => {
                     <Github className="h-5 w-5 mr-2" />
                     View Code
                   </button>
-                  {('liveDemoUrl' in project && (project as any).liveDemoUrl) && (
+                  {project.liveDemoUrl && (
                     <a
-                      href={(project as any).liveDemoUrl}
+                    href={project.liveDemoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center px-6 py-3 border border-blue-300 dark:border-teal-400 rounded-md text-blue-700 dark:text-teal-300 bg-blue-50 dark:bg-gray-900 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
