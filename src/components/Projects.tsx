@@ -78,7 +78,7 @@ const Projects: React.FC = () => {
         "Python",
         "Pytest",
       ],
-      image: "/place-finder-ai.png",
+      image: "/placefinder.png",
       icon: <Github className="h-8 w-8 text-blue-600 dark:text-teal-400" />,
       features: [
         "Google Gemini AI for natural language search, voice input, and image-based destination recognition",
