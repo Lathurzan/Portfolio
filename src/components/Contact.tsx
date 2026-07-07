@@ -28,9 +28,9 @@ const Contact: React.FC = () => {
       message: 'This service is not available at this time.'
     },
     {
-      name: 'Buy Me a Coffee',
-      url: 'https://buymeacoffee.com/lathurzan',
-      icon: <Coffee className="h-6 w-6" />
+      name: 'Kaggle',
+      url: 'https://www.kaggle.com/lathurzan',
+      icon: <ExternalLink className="h-6 w-6" />
     }
   ];
 
