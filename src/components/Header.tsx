@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
@@ -28,6 +29,16 @@ const Header: React.FC<HeaderProps> = () => {
     }
   };
 
+  const downloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/Resume.pdf';
+    link.download = 'Resume.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const navLinks = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
@@ -40,69 +51,126 @@ const Header: React.FC<HeaderProps> = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'border-slate-800/80 bg-[#020817]/80 shadow-lg shadow-sky-950/10 backdrop-blur-xl'
-            : 'border-transparent bg-transparent'
+          ? 'border-b border-slate-800/50 bg-navy-950/80 shadow-lg shadow-blue-600/5 backdrop-blur-xl'
+          : 'border-transparent bg-transparent'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
-            <h1 className="text-lg font-bold tracking-tight text-white">
-              Lathurzan<span className="text-sky-400">.</span>
-            </h1>
-          </div>
+      <div className="mx-auto max-w-6xl px-5 sm:px-8 lg:px-10">
+        <div className="flex justify-between items-center h-16 sm:h-20">
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0"
+          >
+            <button
+              onClick={() => scrollToSection('home')}
+              className="flex items-center gap-2 text-xl font-bold tracking-tight text-white hover:text-blue-400 transition-colors"
+            >
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">LS</span>
+              </div>
+              <span className="hidden sm:inline">Lathurzan</span>
+            </button>
+          </motion.div>
 
           {/* Desktop Navigation */}
-            <nav className="hidden items-center gap-8 md:flex">
+          <motion.nav
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="hidden md:flex items-center gap-1"
+          >
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                className="px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors rounded-md hover:bg-slate-900/40"
               >
                 {link.label}
               </button>
             ))}
-          </nav>
+          </motion.nav>
 
-          {/* Desktop Theme Toggle */}
-          <div className="hidden items-center gap-4 md:flex">
-            <button onClick={() => scrollToSection('contact')} className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">Let&apos;s talk</button>
-            <ThemeToggle variant="dropdown" />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle size="sm" />
+          {/* CTA and Theme Toggle */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex items-center gap-3 sm:gap-4"
+          >
             <button
+              onClick={downloadResume}
+              className="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-all rounded-lg hover:bg-slate-900/50"
+            >
+              <Download className="h-4 w-4" />
+              <span className="hidden sm:inline">Resume</span>
+            </button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection('contact')}
+              className="btn-primary text-sm px-4 py-2 sm:px-5 sm:py-2.5"
+            >
+              <span className="hidden sm:inline">Get in touch</span>
+              <span className="sm:hidden">Contact</span>
+            </motion.button>
+
+            <ThemeToggle />
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="md:hidden p-2 hover:bg-slate-900/50 rounded-lg transition-colors"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="rounded-lg border border-slate-700 bg-slate-900 p-2 text-slate-300 transition hover:border-sky-400"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5 text-white" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5 text-white" />
               )}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
 
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="border-t border-slate-800 bg-[#020817] md:hidden">
-            <nav className="space-y-1 px-2 pb-4 pt-2">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  className="block w-full rounded-lg px-3 py-2 text-left font-medium text-slate-300 transition hover:bg-slate-900 hover:text-sky-400"
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden border-t border-slate-800/50 bg-navy-950/90 backdrop-blur-md"
+            >
+              <div className="px-4 py-4 space-y-1">
+                {navLinks.map((link) => (
+                  <motion.button
+                    key={link.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    onClick={() => scrollToSection(link.id)}
+                    className="block w-full text-left px-4 py-3 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/50 rounded-md transition-colors"
+                  >
+                    {link.label}
+                  </motion.button>
+                ))}
+                <motion.button
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  onClick={downloadResume}
+                  className="block w-full text-left px-4 py-3 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-900/50 rounded-md transition-colors flex items-center gap-2"
                 >
-                  {link.label}
-                </button>
-              ))}
-            </nav>
-          </div>
-        )}
+                  <Download className="h-4 w-4" />
+                  Resume
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

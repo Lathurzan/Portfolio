@@ -21,7 +21,7 @@ function App() {
   }, [isDark]);
 
   return (
-    <div className="min-h-screen bg-[#020817] text-white transition-colors duration-300">
+    <div className="min-h-screen bg-[var(--page)] text-[var(--copy)] transition-colors duration-300">
       <Header isDarkMode={isDark} toggleDarkMode={toggleTheme} />
       <Hero />
       <About />
