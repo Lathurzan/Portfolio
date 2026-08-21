@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -6,12 +6,10 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import LoadingScreen from './components/LoadingScreen';
 import { useTheme } from './components/hooks/useTheme';
 
 function App() {
   const { isDark, toggleTheme } = useTheme();
-  const [isLoading, setIsLoading] = useState(true);
 
   // Ensure theme is applied on component mount
   useEffect(() => {
@@ -22,18 +20,8 @@ function App() {
     }
   }, [isDark]);
 
-  const handleLoadingComplete = () => {
-    setIsLoading(false);
-  };
-
-  // Show loading screen
-  if (isLoading) {
-    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
-  }
-
-  // Show main application
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-[#020817] text-white transition-colors duration-300">
       <Header isDarkMode={isDark} toggleDarkMode={toggleTheme} />
       <Hero />
       <About />

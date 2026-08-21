@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Skills: React.FC = () => {
   const skillCategories = [
@@ -35,44 +36,43 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Technical Skills
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+    <section id="skills" className="site-section bg-slate-900/40">
+      <div className="section-inner">
+        <div className="mb-14">
+          <p className="eyebrow">Toolkit</p>
+          <h2 className="section-title">Technologies I reach for.</h2>
+          <p className="section-copy">
             A comprehensive overview of my technical expertise and proficiency levels
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+            <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: categoryIndex * .08 }} key={categoryIndex} className="surface-card p-6">
+              <h3 className="mb-7 text-xl font-bold text-white">
                 {category.title}
               </h3>
               <div className="space-y-4">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex}>
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                      <span className="text-sm font-medium text-slate-200">
                         {skill.name}
                       </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                      <span className="text-sm text-slate-500">
                         {skill.level}%
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                    <div className="h-1.5 w-full rounded-full bg-slate-800">
                       <div
-                        className="bg-gradient-to-r from-blue-600 to-teal-500 h-2 rounded-full transition-all duration-1000 ease-out"
+                        className="h-1.5 rounded-full bg-sky-400 transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       ></div>
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

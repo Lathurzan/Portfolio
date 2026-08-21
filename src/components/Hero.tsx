@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowUpRight, Download, Github, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 // Public assets are served from the public folder; reference them by path string (no import) so TypeScript won't try to resolve the module.
 const LogoUrl = '/logo.jpg';
 
@@ -24,81 +25,53 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-teal-50 dark:from-gray-900 dark:to-gray-800 pt-16"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Content */}
-          <div className="text-center lg:text-left order-2 lg:order-1">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              <span className="block">Lathurzan</span>
-              <span className="block text-blue-600 dark:text-teal-400">Subatharan</span>
+    <section id="home" className="relative flex min-h-screen items-center overflow-hidden pt-24">
+      <div className="grid-glow pointer-events-none absolute inset-0 opacity-80" />
+      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-blue-600/15 blur-3xl" />
+      <div className="section-inner relative grid items-center gap-16 pb-20 lg:grid-cols-[1.05fr_.95fr]">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }} className="text-center lg:text-left">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-400/5 px-3 py-1.5 text-sm text-sky-300">
+              <Sparkles className="h-4 w-4" /> Available for thoughtful collaborations
+            </div>
+            <h1 className="max-w-3xl text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-7xl">
+              Software that makes <span className="text-sky-400">complex things</span> feel simple.
             </h1>
-            
-            <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8">
-              Software Engineer | Building Innovative Solutions with Code
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
+              I&apos;m Lathurzan Subatharan, a software engineer building dependable products with Java, Python, C++, Node.js, React, and TypeScript.
             </p>
-            
-            <p className="text-lg text-gray-700 dark:text-gray-400 mb-12">
-              Passionate about creating impactful software solutions using Java, Python, C++, Node.js, React, and TypeScript. 
-              I transform ideas into robust applications that make a difference.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
               <button
                 onClick={scrollToContact}
-                className="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors transform hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-blue-500"
               >
-                Contact Me
-                <ArrowRight className="ml-2 h-5 w-5" />
+                Start a conversation <ArrowUpRight className="h-5 w-5" />
               </button>
-              
-              <button 
+              <button
                 onClick={downloadResume}
-                className="inline-flex items-center px-8 py-3 border border-gray-300 dark:border-gray-600 text-base font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors transform hover:scale-105"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-900/70 px-5 py-3 font-semibold text-slate-200 transition hover:-translate-y-0.5 hover:border-sky-400 hover:text-white"
               >
-                Download Resume
-                <Download className="ml-2 h-5 w-5" />
+                Download resume <Download className="h-5 w-5" />
               </button>
             </div>
-          </div>
-
-          {/* Right side - Profile Image */}
-          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-            <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-              {/* Animated background rings */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 animate-pulse"></div>
-              <div className="absolute inset-1 rounded-full bg-gradient-to-r from-teal-500 to-blue-600 animate-spin" style={{ animationDuration: '8s' }}></div>
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-blue-400 to-teal-400 animate-ping" style={{ animationDuration: '3s' }}></div>
-              
-              {/* Main profile image */}
-              <div className="absolute inset-3 rounded-full overflow-hidden shadow-lg border-4 border-white dark:border-gray-800">
+            <div className="mt-12 flex items-center justify-center gap-6 text-sm text-slate-500 lg:justify-start">
+              <span className="flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Open to work</span>
+              <a href="https://github.com/Lathurzan" target="_blank" rel="noreferrer" className="flex items-center gap-2 transition hover:text-sky-400"><Github className="h-4 w-4" /> github.com/Lathurzan</a>
+            </div>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .7, delay: .15 }} className="relative mx-auto w-full max-w-md">
+            <div className="absolute -inset-6 rounded-[2rem] bg-blue-600/10 blur-2xl" />
+            <div className="surface-card relative overflow-hidden p-3 shadow-2xl shadow-blue-950/40">
                 <img
                   src={LogoUrl}
                   alt="Lathurzan Subatharan - Software Engineer"
-                  className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  className="aspect-[4/5] w-full rounded-xl object-cover object-center transition duration-700 hover:scale-105"
                 />
-                {/* Overlay for professional effect */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
+              <div className="absolute inset-x-3 bottom-3 rounded-xl border border-white/10 bg-slate-950/75 p-4 backdrop-blur-md">
+                <p className="text-xs uppercase tracking-[.18em] text-sky-300">Currently building</p>
+                <p className="mt-1 font-medium text-white">Reliable digital experiences</p>
               </div>
-              
-              {/* Floating code elements */}
-              <div className="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded text-white text-xs flex items-center justify-center animate-bounce font-mono" style={{ animationDelay: '0.5s' }}>
-                {'<>'}
-              </div>
-              <div className="absolute -bottom-2 -left-2 w-8 h-8 bg-teal-500 rounded text-white text-xs flex items-center justify-center animate-bounce font-mono" style={{ animationDelay: '1s' }}>
-                &#123;&#125;
-              </div>
-              <div className="absolute top-8 -left-6 w-6 h-6 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
-              <div className="absolute bottom-8 -right-6 w-6 h-6 bg-yellow-500 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-              
-              {/* Status indicator */}
-              <div className="absolute bottom-2 right-2 w-6 h-6 bg-green-500 rounded-full border-4 border-white dark:border-gray-800 animate-pulse"></div>
             </div>
-          </div>
-        </div>
+          </motion.div>
       </div>
     </section>
   );

@@ -40,25 +40,25 @@ const Header: React.FC<HeaderProps> = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg'
-          : 'bg-transparent'
+          ? 'border-slate-800/80 bg-[#020817]/80 shadow-lg shadow-sky-950/10 backdrop-blur-xl'
+            : 'border-transparent bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-blue-900 dark:text-white">
-              Lathurzan S.
+            <h1 className="text-lg font-bold tracking-tight text-white">
+              Lathurzan<span className="text-sky-400">.</span>
             </h1>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+            <nav className="hidden items-center gap-8 md:flex">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
-                className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors font-medium"
+                className="text-sm font-medium text-slate-400 transition-colors hover:text-white"
               >
                 {link.label}
               </button>
@@ -66,7 +66,8 @@ const Header: React.FC<HeaderProps> = () => {
           </nav>
 
           {/* Desktop Theme Toggle */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden items-center gap-4 md:flex">
+            <button onClick={() => scrollToSection('contact')} className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500">Let&apos;s talk</button>
             <ThemeToggle variant="dropdown" />
           </div>
 
@@ -75,12 +76,12 @@ const Header: React.FC<HeaderProps> = () => {
             <ThemeToggle size="sm" />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              className="rounded-lg border border-slate-700 bg-slate-900 p-2 text-slate-300 transition hover:border-sky-400"
             >
               {isMobileMenuOpen ? (
-                <X className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <X className="h-5 w-5" />
               ) : (
-                <Menu className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+                <Menu className="h-5 w-5" />
               )}
             </button>
           </div>
@@ -88,13 +89,13 @@ const Header: React.FC<HeaderProps> = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800">
-            <nav className="px-2 pt-2 pb-3 space-y-1">
+          <div className="border-t border-slate-800 bg-[#020817] md:hidden">
+            <nav className="space-y-1 px-2 pb-4 pt-2">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="block w-full text-left px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-teal-400 transition-colors font-medium"
+                  className="block w-full rounded-lg px-3 py-2 text-left font-medium text-slate-300 transition hover:bg-slate-900 hover:text-sky-400"
                 >
                   {link.label}
                 </button>

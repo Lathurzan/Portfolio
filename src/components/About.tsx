@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Lightbulb, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const About: React.FC = () => {
   const highlights = [
@@ -21,23 +22,22 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About Me
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+    <section id="about" className="site-section border-t border-slate-800/70">
+      <div className="section-inner">
+        <div className="mb-14">
+          <p className="eyebrow">The person behind the code</p>
+          <h2 className="section-title">Curious by nature. Careful by craft.</h2>
+          <p className="section-copy">
             A passionate software engineer with a strong foundation in multiple programming languages and frameworks
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid items-start gap-12 lg:grid-cols-[.9fr_1.1fr]">
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <h3 className="mb-6 text-2xl font-bold text-white">
               My Journey
             </h3>
-            <div className="space-y-4 text-gray-700 dark:text-gray-300">
+            <div className="space-y-5 leading-8 text-slate-400">
               <p>
                 I'm a dedicated software engineer with a passion for creating innovative solutions 
                 that make a real impact. My journey in technology began with curiosity and has evolved 
@@ -56,21 +56,21 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-6">
+          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
             {highlights.map((highlight, index) => (
-              <div key={index} className="flex items-start space-x-4 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <div className="flex-shrink-0">
+              <motion.div whileHover={{ y: -4 }} transition={{ duration: .2 }} key={index} className="surface-card flex items-start gap-4 p-5">
+                <div className="shrink-0 rounded-lg bg-sky-400/10 p-3">
                   {highlight.icon}
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h4 className="mb-2 text-lg font-semibold text-white">
                     {highlight.title}
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p className="text-sm leading-6 text-slate-400">
                     {highlight.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

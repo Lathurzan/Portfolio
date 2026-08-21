@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, BookOpen, Building } from 'lucide-react';
+import { Github, BookOpen, Building, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type Project = {
   title: string;
@@ -92,64 +93,70 @@ const Projects: React.FC = () => {
     }
   ];
 
+  const projectHasLiveDemo = (project: typeof projects[number]): project is typeof projects[number] & { liveDemoUrl: string } =>
+    'liveDemoUrl' in project && typeof project.liveDemoUrl === 'string';
+
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+    <section id="projects" className="site-section">
+      <div className="section-inner">
+        <div className="mb-14">
+          <p className="eyebrow">Selected work</p>
+          <h2 className="section-title">Products built to be useful.</h2>
+          <p className="section-copy">
             Showcasing my expertise through real-world applications and solutions
           </p>
         </div>
 
-        <div className="space-y-12">
+        <div className="grid gap-6 lg:grid-cols-2">
           {projects.map((project, index) => (
-            <div
+            <motion.article
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: .15 }}
+              transition={{ duration: .45, delay: index * .08 }}
               key={index}
-              className={`grid lg:grid-cols-2 gap-8 items-center ${
-                index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''
-              }`}
+              className="surface-card group flex h-full flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-xl hover:shadow-blue-950/30"
             >
-              <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                <div className="flex items-center space-x-3">
-                  {project.icon}
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              <div className="relative overflow-hidden border-b border-slate-800">
+                <img src={project.image} alt={project.title} loading="lazy" className="h-64 w-full object-cover transition duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent" />
+              </div>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex items-start gap-3">
+                  <div className="rounded-lg bg-sky-400/10 p-2">{project.icon}</div>
+                  <h3 className="pt-1 text-xl font-bold leading-tight text-white sm:text-2xl">
                     {project.title}
                   </h3>
                 </div>
                 
-                <p className="text-gray-600 dark:text-gray-400 text-lg">
+                <p className="mt-5 text-sm leading-7 text-slate-400 sm:text-base">
                   {project.description}
                 </p>
 
-                <div className="space-y-3">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    Key Features:
-                  </h4>
-                  <ul className="space-y-2">
+                <div className="mt-6">
+                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-[.18em] text-slate-500">Key features</h4>
+                  <ul className="grid gap-2 sm:grid-cols-2">
                     {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start space-x-2">
-                        <span className="w-2 h-2 bg-blue-600 dark:bg-teal-400 rounded-full mt-2 flex-shrink-0"></span>
-                        <span className="text-gray-600 dark:text-gray-400">{feature}</span>
+                      <li key={featureIndex} className="flex items-start gap-2 text-sm leading-6 text-slate-400">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="mt-6 flex flex-wrap gap-2">
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium"
+                      className="rounded-md border border-slate-700 bg-slate-900 px-2.5 py-1 text-xs font-medium text-slate-300"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex space-x-4">
+                <div className="mt-auto flex flex-wrap gap-3 pt-8">
                   <button
                     onClick={() => {
                       if (project.title === "HNV Building Construction Website") {
@@ -158,35 +165,30 @@ const Projects: React.FC = () => {
                         window.open(project.githubUrl, '_blank');
                       }
                     }}
-                    className="inline-flex items-center px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2.5 text-sm font-semibold text-slate-200 transition hover:border-sky-400 hover:text-white"
                   >
-                    <Github className="h-5 w-5 mr-2" />
+                    <Github className="h-4 w-4" />
                     View Code
                   </button>
+<<<<<<< HEAD
                   {project.liveDemoUrl && (
                     <a
                     href={project.liveDemoUrl}
+=======
+                  {projectHasLiveDemo(project) && (
+                    <a
+                      href={project.liveDemoUrl}
+>>>>>>> 76172b1 (change the animation and designs.)
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center px-6 py-3 border border-blue-300 dark:border-teal-400 rounded-md text-blue-700 dark:text-teal-300 bg-blue-50 dark:bg-gray-900 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors"
+                      className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
                     >
-                      Live Demo
+                      Live Demo <ArrowUpRight className="h-4 w-4" />
                     </a>
                   )}
                 </div>
               </div>
-
-              <div className={`${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                <div className="relative group">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 sm:h-80 object-cover rounded-lg shadow-lg group-hover:shadow-xl transition-shadow duration-300"
-                  />
-                  <div className="absolute inset-0 bg-blue-600 bg-opacity-20 group-hover:bg-opacity-30 transition-opacity duration-300 rounded-lg"></div>
-                </div>
-              </div>
-            </div>
+            </motion.article>
           ))}
         </div>
       </div>

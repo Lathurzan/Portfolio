@@ -35,24 +35,23 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Get In Touch
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+    <section id="contact" className="site-section border-t border-slate-800/70 bg-slate-900/30">
+      <div className="section-inner">
+        <div className="mb-14">
+          <p className="eyebrow">Let&apos;s connect</p>
+          <h2 className="section-title">Have a problem worth solving?</h2>
+          <p className="section-copy">
             Ready to collaborate on your next project? Let's discuss how we can work together.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
           <div className="space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h3 className="mb-6 text-2xl font-bold text-white">
                 Let's Connect
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
+              <p className="mb-8 leading-7 text-slate-400">
                 I'm always interested in discussing new opportunities, innovative projects, 
                 and potential collaborations. Feel free to reach out!
               </p>
@@ -60,12 +59,12 @@ const Contact: React.FC = () => {
 
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
-                <Mail className="h-6 w-6 text-blue-600 dark:text-teal-400" />
+                <Mail className="h-5 w-5 text-sky-400" />
                 <div>
-                  <p className="text-gray-900 dark:text-white font-medium">Email</p>
+                  <p className="font-medium text-white">Email</p>
                   <a
                     href="mailto:lathulathurzan@gmail.com"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-teal-400 transition-colors"
+                    className="text-slate-400 transition-colors hover:text-sky-400"
                   >
                     lathulathurzan@gmail.com
                   </a>
@@ -73,12 +72,12 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <Phone className="h-6 w-6 text-blue-600 dark:text-teal-400" />
+                <Phone className="h-5 w-5 text-sky-400" />
                 <div>
-                  <p className="text-gray-900 dark:text-white font-medium">Phone</p>
+                  <p className="font-medium text-white">Phone</p>
                   <a
                     href="tel:+1234567890"
-                    className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-teal-400 transition-colors"
+                    className="text-slate-400 transition-colors hover:text-sky-400"
                   >
                     07477732893
                   </a>
@@ -86,16 +85,16 @@ const Contact: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-4">
-                <MapPin className="h-6 w-6 text-blue-600 dark:text-teal-400" />
+                <MapPin className="h-5 w-5 text-sky-400" />
                 <div>
-                  <p className="text-gray-900 dark:text-white font-medium">Location</p>
-                  <p className="text-gray-600 dark:text-gray-400">Available for Remote Work</p>
+                  <p className="font-medium text-white">Location</p>
+                  <p className="text-slate-400">Available for Remote Work</p>
                 </div>
               </div>
             </div>
 
               <div className="pt-8">
-              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <h4 className="mb-4 text-lg font-semibold text-white">
                 Follow Me
               </h4>
               <div className="flex flex-wrap items-center space-x-4">
@@ -107,7 +106,7 @@ const Contact: React.FC = () => {
                       onClick={() => setNotice({ open: true, message: link.message || 'This service is not available at this time.' })}
                       aria-label={link.name}
                       title={link.name}
-                      className="relative group flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-400 dark:text-gray-600 cursor-not-allowed transition-colors"
+                      className="relative group flex items-center justify-center rounded-lg border border-slate-800 p-3 text-slate-600"
                       aria-disabled="true"
                     >
                       {React.cloneElement(link.icon as React.ReactElement, {
@@ -128,7 +127,7 @@ const Contact: React.FC = () => {
                       rel="noopener noreferrer"
                       aria-label={link.name}
                       title={link.name}
-                      className="relative group flex items-center justify-center p-3 bg-gray-100 dark:bg-gray-800 rounded-full hover:bg-blue-600 dark:hover:bg-teal-600 text-gray-700 dark:text-gray-300 hover:text-white transition-colors cursor-pointer"
+                      className="relative group flex items-center justify-center rounded-lg border border-slate-800 bg-slate-900/50 p-3 text-slate-400 transition hover:border-sky-400 hover:bg-blue-600 hover:text-white"
                     >
                       {/* Icon */}
                       {React.cloneElement(link.icon as React.ReactElement, {
@@ -166,9 +165,9 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Message form column */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Send a message</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">Have a project idea or question? Send me a message and I'll get back to you.</p>
+          <div className="surface-card p-6 sm:p-8">
+            <h3 className="mb-4 text-2xl font-bold text-white">Send a message</h3>
+            <p className="mb-6 text-slate-400">Have a project idea or question? Send me a message and I'll get back to you.</p>
 
             <form
               onSubmit={(e) => {
@@ -185,22 +184,22 @@ const Contact: React.FC = () => {
               className="space-y-4"
             >
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Name</label>
-                <input id="name" name="name" required className="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <label htmlFor="name" className="block text-sm font-medium text-slate-300">Name</label>
+                <input id="name" name="name" required className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-white outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400" />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
-                <input id="email" name="email" type="email" required className="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
+                <input id="email" name="email" type="email" required className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-white outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400" />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Message</label>
-                <textarea id="message" name="message" rows={5} required className="mt-1 block w-full rounded-md border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                <label htmlFor="message" className="block text-sm font-medium text-slate-300">Message</label>
+                <textarea id="message" name="message" rows={5} required className="mt-1 block w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5 text-white outline-none focus:border-sky-400 focus:ring-1 focus:ring-sky-400" />
               </div>
 
               <div className="flex items-center justify-between">
-                <button type="submit" className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white">
+                <button type="submit" className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-5 py-2.5 font-semibold text-white transition hover:bg-blue-500">
                   <Send className="h-4 w-4" />
                   Send message
                 </button>
