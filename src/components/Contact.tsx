@@ -42,11 +42,29 @@ const Contact: React.FC = () => {
       href: 'tel:+447477732893'
     },
     {
-      name: 'Buy Me a Coffee',
-      url: 'https://buymeacoffee.com/lathurzan',
-      icon: <Coffee className="h-6 w-6" />
+      icon: <MapPin className="h-6 w-6" />,
+      label: 'Location',
+      value: 'Available for Remote Work',
+      href: null
     }
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
 
   return (
     <section id="contact" className="site-section relative border-t border-slate-800/50">
