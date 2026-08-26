@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import NovaChat from './components/NovaChat';
 import { useTheme } from './components/hooks/useTheme';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Projects />
       <Contact />
       <Footer />
+      <NovaChat />
     </div>
   );
 }
