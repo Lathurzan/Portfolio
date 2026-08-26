@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MessageCircle, Sparkles, X } from 'lucide-react';
 
@@ -8,7 +8,9 @@ const NOVA_URL =
 const NovaChat = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [panelWidth, setPanelWidth] = useState(400);
   const loadingTimeoutRef = useRef<number | null>(null);
+  const resizingRef = useRef(false);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -39,6 +41,24 @@ const NovaChat = () => {
     }, 1000);
   };
 
+  const handleResizeStart = (event: PointerEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    resizingRef.current = true;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handleResize = (event: PointerEvent<HTMLDivElement>) => {
+    if (!resizingRef.current) return;
+
+    const nextWidth = window.innerWidth - event.clientX;
+    setPanelWidth(Math.min(Math.max(nextWidth, 320), Math.min(680, window.innerWidth - 24)));
+  };
+
+  const handleResizeEnd = (event: PointerEvent<HTMLDivElement>) => {
+    resizingRef.current = false;
+    event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+
   return (
     <div className="pointer-events-none fixed inset-0 z-[60]">
       <AnimatePresence>
@@ -51,8 +71,28 @@ const NovaChat = () => {
             role="dialog"
             aria-modal="false"
             aria-labelledby="nova-title"
-            className="pointer-events-auto absolute bottom-0 right-0 flex h-[58vh] w-full flex-col overflow-hidden border-t border-[var(--border)] bg-[var(--page)] shadow-2xl shadow-blue-950/25 md:top-0 md:h-full md:w-[400px] md:border-l md:border-t-0"
+            style={{ '--nova-panel-width': `${panelWidth}px` } as CSSProperties}
+            className="pointer-events-auto absolute bottom-0 right-0 flex h-[58vh] w-full flex-col overflow-hidden border-t border-[var(--border)] bg-[var(--page)] shadow-2xl shadow-blue-950/25 md:top-0 md:h-full md:w-[var(--nova-panel-width)] md:border-l md:border-t-0"
           >
+            <div
+              role="separator"
+              aria-label="Resize Nova AI panel"
+              aria-orientation="vertical"
+              aria-valuemin={320}
+              aria-valuemax={680}
+              aria-valuenow={panelWidth}
+              tabIndex={0}
+              onPointerDown={handleResizeStart}
+              onPointerMove={handleResize}
+              onPointerUp={handleResizeEnd}
+              onKeyDown={(event) => {
+                if (event.key === 'ArrowLeft') setPanelWidth((width) => Math.min(width + 24, 680));
+                if (event.key === 'ArrowRight') setPanelWidth((width) => Math.max(width - 24, 320));
+              }}
+              className="absolute bottom-0 left-0 top-0 z-20 hidden w-3 -translate-x-1/2 cursor-ew-resize items-center justify-center md:flex focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-500"
+            >
+              <span className="h-16 w-1 rounded-full bg-[var(--border)] transition-colors hover:bg-[var(--accent)]" />
+            </div>
             <header className="flex items-center justify-between border-b border-[var(--border)] bg-[var(--card)] px-5 py-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-600/25">
