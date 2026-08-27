@@ -7,4 +7,12 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: `${process.cwd()}/index.html`,
+        portfolio: `${process.cwd()}/portfolio.html`,
+      },
+    },
+  },
 });

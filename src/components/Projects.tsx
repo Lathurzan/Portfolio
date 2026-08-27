@@ -280,7 +280,7 @@ const Projects: React.FC<ProjectsProps> = ({ showAll = false }) => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-10 flex justify-center"
           >
-            <a href="/projects" className="btn-primary">
+            <a href="/portfolio.html" className="btn-primary">
               View all projects
               <ExternalLink className="h-4 w-4" />
             </a>
