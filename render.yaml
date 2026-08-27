@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: lathurzan-portfolio
+    name: portfolio-kuvs
     runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist
