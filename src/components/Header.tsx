@@ -26,7 +26,10 @@ const Header: React.FC<HeaderProps> = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMobileMenuOpen(false);
+      return;
     }
+
+    window.location.href = sectionId === 'home' ? '/' : `/#${sectionId}`;
   };
 
   const downloadResume = () => {

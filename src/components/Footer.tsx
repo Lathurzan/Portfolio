@@ -26,7 +26,10 @@ const Footer = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      return;
     }
+
+    window.location.href = sectionId === 'home' ? '/' : `/#${sectionId}`;
   };
 
   return (

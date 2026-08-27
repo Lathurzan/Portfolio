@@ -11,6 +11,7 @@ import { useTheme } from './components/hooks/useTheme';
 
 function App() {
   const { isDark, toggleTheme } = useTheme();
+  const isProjectsPage = window.location.pathname === '/projects';
 
   // Ensure theme is applied on component mount
   useEffect(() => {
@@ -24,11 +25,17 @@ function App() {
   return (
     <div className="min-h-screen bg-[var(--page)] text-[var(--copy)] transition-colors duration-300">
       <Header isDarkMode={isDark} toggleDarkMode={toggleTheme} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+      {isProjectsPage ? (
+        <Projects showAll />
+      ) : (
+        <>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </>
+      )}
       <Footer />
       <NovaChat />
     </div>

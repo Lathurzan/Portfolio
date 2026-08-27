@@ -14,7 +14,11 @@ type Project = {
   featured?: boolean;
 };
 
-const Projects: React.FC = () => {
+interface ProjectsProps {
+  showAll?: boolean;
+}
+
+const Projects: React.FC<ProjectsProps> = ({ showAll = false }) => {
   const projects: Project[] = [
     {
       title: "Place Finder AI",
@@ -107,6 +111,8 @@ const Projects: React.FC = () => {
     },
   };
 
+  const visibleProjects = showAll ? projects : projects.slice(0, 2);
+
   return (
     <section id="projects" className="site-section relative border-t border-slate-800/50">
       <div className="absolute inset-0 pointer-events-none">
@@ -121,10 +127,12 @@ const Projects: React.FC = () => {
           transition={{ duration: 0.5 }}
           className="mb-16"
         >
-          <p className="eyebrow">Selected Work</p>
-          <h2 className="section-title">Products built to be useful.</h2>
+          <p className="eyebrow">{showAll ? 'Complete Portfolio' : 'Selected Work'}</p>
+          <h2 className="section-title">{showAll ? 'Every project, in one place.' : 'Products built to be useful.'}</h2>
           <p className="section-copy">
-            Real-world applications showcasing my expertise in full-stack development, AI integration, and user-focused design.
+            {showAll
+              ? 'A complete collection of real-world applications showcasing full-stack development, AI integration, and user-focused design.'
+              : 'Real-world applications showcasing my expertise in full-stack development, AI integration, and user-focused design.'}
           </p>
         </motion.div>
 
@@ -135,7 +143,7 @@ const Projects: React.FC = () => {
           viewport={{ once: true, margin: '-100px' }}
           className="space-y-8"
         >
-          {projects.map((project, index) => (
+          {visibleProjects.map((project, index) => (
             <motion.article
               key={index}
               variants={itemVariants}
@@ -263,6 +271,21 @@ const Projects: React.FC = () => {
             </motion.article>
           ))}
         </motion.div>
+
+        {!showAll && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-10 flex justify-center"
+          >
+            <a href="/projects" className="btn-primary">
+              View all projects
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </motion.div>
+        )}
       </div>
     </section>
   );
