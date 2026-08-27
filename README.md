@@ -43,3 +43,9 @@ Tools & Platforms
 - Git & GitHub  
 - REST APIs  
 - Render Hosting
+
+# Render Deployment
+
+The `render.yaml` file configures Render as a static site and rewrites frontend routes such as `/projects` to `index.html`, allowing the React app to handle the route.
+
+If the existing Render service was created manually, add a rewrite rule in its settings with source `/*` and destination `/index.html`, then redeploy. The Blueprint file is used automatically when deploying this repository through Render Blueprints.
