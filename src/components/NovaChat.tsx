@@ -10,12 +10,13 @@ const NovaChat = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [panelWidth, setPanelWidth] = useState(400);
   const loadingTimeoutRef = useRef<number | null>(null);
+  const frameLoadedRef = useRef(false);
   const resizingRef = useRef(false);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    setIsLoading(true);
+    setIsLoading(!frameLoadedRef.current);
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setIsOpen(false);
@@ -35,10 +36,9 @@ const NovaChat = () => {
       window.clearTimeout(loadingTimeoutRef.current);
     }
 
-    loadingTimeoutRef.current = window.setTimeout(() => {
-      setIsLoading(false);
-      loadingTimeoutRef.current = null;
-    }, 1000);
+    frameLoadedRef.current = true;
+    setIsLoading(false);
+    loadingTimeoutRef.current = null;
   };
 
   const handleResizeStart = (event: PointerEvent<HTMLDivElement>) => {
@@ -62,17 +62,16 @@ const NovaChat = () => {
   return (
     <div className="pointer-events-none fixed inset-0 z-[60]">
       <AnimatePresence>
-        {isOpen && (
-          <motion.aside
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
+        <motion.aside
+            initial={false}
+            animate={isOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: '100%' }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             role="dialog"
             aria-modal="false"
             aria-labelledby="nova-title"
+            aria-hidden={!isOpen}
             style={{ '--nova-panel-width': `${panelWidth}px` } as CSSProperties}
-            className="pointer-events-auto absolute bottom-0 right-0 flex h-[58vh] w-full flex-col overflow-hidden border-t border-[var(--border)] bg-[var(--page)] shadow-2xl shadow-blue-950/25 md:top-0 md:h-full md:w-[var(--nova-panel-width)] md:border-l md:border-t-0"
+            className={`absolute bottom-0 right-0 flex h-[58vh] w-full flex-col overflow-hidden border-t border-[var(--border)] bg-[var(--page)] shadow-2xl shadow-blue-950/25 md:top-0 md:h-full md:w-[var(--nova-panel-width)] md:border-l md:border-t-0 ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}
           >
             <div
               role="separator"
@@ -143,7 +142,6 @@ const NovaChat = () => {
               />
             </div>
           </motion.aside>
-        )}
       </AnimatePresence>
 
       <AnimatePresence>
