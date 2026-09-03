@@ -8,6 +8,7 @@ const Footer = () => {
     { label: 'Home', id: 'home' },
     { label: 'About', id: 'about' },
     { label: 'Projects', id: 'projects' },
+    { label: 'Demo Sites', id: 'demo-sites' },
     { label: 'Skills', id: 'skills' },
     { label: 'Contact', id: 'contact' },
   ];
@@ -121,6 +122,9 @@ const Footer = () => {
             </p>
             <p className="text-xs text-slate-600 mt-1">
               Crafted with precision and passion.
+            </p>
+            <p className="text-xs text-slate-600 mt-3 max-w-xl">
+              Demo sites are built to showcase frontend development skills - they are not real products or stores.
             </p>
           </div>
 

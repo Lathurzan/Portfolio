@@ -5,6 +5,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
+import DemoSites from './components/DemoSites';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import NovaChat from './components/NovaChat';
@@ -16,6 +17,7 @@ const Home = () => (
     <About />
     <Skills />
     <Projects />
+    <DemoSites />
     <Contact />
   </>
 );
